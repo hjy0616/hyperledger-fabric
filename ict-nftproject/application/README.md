@@ -13,30 +13,31 @@ node server.js > /dev/null 2>&1 &
 ```
 
 
-## Api list
+## Org1 (NFT holder) Api list
 ```
-1. Create User (register)
-2. Minting (mint)
-3. TotalSupply (TotalSupply)
-4. Minter account balance (Burn)
-5. Account check (ClientAccountID)
-6. Account balance (ClientAccountBalance)
-7. Transfer (Transfer)
-8. Approve (Approve)
-9. Allowance (Allowance)
-10. TransferFrom (TransferFrom)
+1. Create User (admin_register)
+2. MintWithTokenURI (mint)
+3. Wallet (WalletInfo)
+4. AI (AIinfo)
+5. ReadAIinfo (ReadAIinfo)
 ```
 
+## Org2 (labeler) Api list
+```
+1. Create User (AddUser)
+2. AddScore (add Score)
+3. ReadScore (Read Score)
+```
 
 ## Endpoint
 ```
-http://IP:Port/api/v1.0/function
+http://IP:Port/api/function
 ```
 
-
+# NFT minting & NFT Holder
 ### 1. Create User
  - Method : POST
- - Path : /register
+ - Path : /admin_register
  + Reaquest
  ```json
  { 
@@ -72,17 +73,20 @@ http://IP:Port/api/v1.0/function
 
 ### 2. Minting
  - Method : Post
- - Path : /minter
+ - Path : /Mint
  + Reaquest
  ```json
  {
      "id" : "",
-     "totalsupply" : ""
+     "tokenId" : "",
+     "tokenURI" : ""
  }
  ```
  + __response__
  ```json
- 
+  {
+    "response": "Ok"
+  }
  ```
  
  - Error
@@ -92,37 +96,151 @@ http://IP:Port/api/v1.0/function
  }
  ```
 
-### 3. TotalSupply
+### 3. WalletInfo
  - Method : Post
- - Path : /TotalSupply
+ - Path : /Wallet
  + Reaquest
- ```
+ ```json
+ {
+     "owner": "username"
+ }
  ```
  + __response__
+ ```json
+ {
+     "response": "Ok"
+ }
  ```
+ + __Error__
+ ```json
+ {
+     "response": "잘못된 값 또는 서버에서 값이 제대로 처리되지 않았습니다."
+ }
  ```
 
 
 
-
-### 4. Minter account balance Burn
+### 4. AIinfo
  - Method : Post
- - Path : /Burn
+ - Path : /AIinfo
  + __Reaquest__
+ ```json
+ {
+     "owner" : "",
+     "aititle" : "",
+     "tokenId" : "",
+     "aisum" : "",
+     "learningdata" : "",
+ }
  ```
- ```
+
  + __response__
+ ```json
+ {
+    "response": "Ok"
+ }
  ```
+
+ + __Error__
+ ```json
+ {
+     "response": "잘못된 값 또는 서버에서 값이 제대로 처리되지 않았습니다."
+ }
  ```
 
 
-
-### 5. Account check (ClientAccountID)
+### 5. ReadAIinfo
  - Method : Post
- - Path : /ClientAccountID
+ - Path : /ReadAIinfo
  + __Reaquest__
- ```
+ ```json
+ {
+     "owner" : "username"
+ }
  ```
  + __response__
+ ```json
+ {
+     "response" : "Ok"
+ }
  ```
+
+  + __Error__
+ ```json
+ {
+     "response": "잘못된 값 또는 서버에서 값이 제대로 처리되지 않았습니다."
+ }
  ```
+
+# User(labeler)
+### 6. AddUser
+- Method : Post
+- Path : /AddUser
++ __Reaquest__
+```json
+ {
+    "username" : "username"
+ }
+```
++ __response__
+```json
+ {
+    "response" : "Ok"
+ }
+```
+
++ __Error__
+```json
+ {
+    "response": "잘못된 값 또는 서버에서 값이 제대로 처리되지 않았습니다."
+ }
+```
+
+
+### 7. AddScore
+- Method : Post
+- Path : /AddScore
++ __Reaquest__
+```json
+ {
+    "username" : "username",
+    "project_name" : "username",
+    "activity_score" : "username"
+ }
+```
++ __response__
+```json
+ {
+    "response" : "Ok"
+ }
+```
+
++ __Error__
+```json
+ {
+    "response": "잘못된 값 또는 서버에서 값이 제대로 처리되지 않았습니다."
+ }
+```
+
+### 8. ReadScore
+- Method : Post
+- Path : /ReadScore
++ __Reaquest__
+```json
+ {
+    "username" : "username"
+ }
+```
++ __response__
+```json
+ {
+    "response" : "Ok"
+ }
+```
+
++ __Error__
+```json
+ {
+    "response": "잘못된 값 또는 서버에서 값이 제대로 처리되지 않았습니다."
+ }
+```
