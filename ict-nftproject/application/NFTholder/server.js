@@ -43,7 +43,7 @@ app.post('/api/Mint', async function (req, res) {
 
         const result = await contract.submitTransaction('MintWithTokenURI', req.body.tokenid, req.body.tokenUrl);
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
-        res.status(200).json({response: "ok"});
+        res.status(200).json({response: result.toString()});
 
         await gateway.disconnect();
 
@@ -85,7 +85,7 @@ app.post('/api/Wallet', async function (req, res) {
 
         const result = await contract.submitTransaction('Wallet', req.body.owner);
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
-        res.status(200).json({response: result.toString()});
+        res.status(200).json({response: "Ok"});
 
         await gateway.disconnect();
 
@@ -125,7 +125,7 @@ app.post('/api/AIinfo', async function (req, res) {
 
         const result = await contract.submitTransaction('AI', req.body.owner, req.body.aititle, req.body.tokenId, req.body.aisum, req.body.learningdata);
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
-        res.status(200).json({response: result.toString()});
+        res.status(200).json({response: "Ok"});
 
         await gateway.disconnect();
 
@@ -252,5 +252,5 @@ app.post('/api/admin_register', async function (req, res) {
     }
 });
 
-app.listen(8080, '0.0.0.0');
+app.listen(8100, '0.0.0.0');
 console.log('Running on api server');

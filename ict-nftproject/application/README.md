@@ -42,7 +42,7 @@ http://IP:Port/api/function
  ```json
  { 
      "id" : "",
-     "password" ""
+     "password" : ""
  }
  ```
  
@@ -130,7 +130,7 @@ http://IP:Port/api/function
      "aititle" : "",
      "tokenId" : "",
      "aisum" : "",
-     "learningdata" : "",
+     "learningdata" : ""
  }
  ```
 
@@ -161,7 +161,7 @@ http://IP:Port/api/function
  + __response__
  ```json
  {
-     "response" : "Ok"
+     "response" : "{\"owner\":\"username\",\"count\":0,\"aiinfos\":[{\"aititle\":\"사과\",\"tokenId\":\"101\",\"aisum\":1,\"learningdata\":0}]}"
  }
  ```
 
@@ -204,8 +204,8 @@ http://IP:Port/api/function
 ```json
  {
     "username" : "username",
-    "project_name" : "username",
-    "activity_score" : "username"
+    "project_name" : "사과",
+    "activity_score" : "1000"
  }
 ```
 + __response__
@@ -234,7 +234,7 @@ http://IP:Port/api/function
 + __response__
 ```json
  {
-    "response" : "Ok"
+    "response" : "{\"infos\":[{\"activityscore\":1000,\"projecttitle\":\"사과\"}],\"sum\":0,\"user\":\"username\"}"
  }
 ```
 

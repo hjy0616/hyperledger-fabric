@@ -13,7 +13,7 @@ const fs = require('fs'); // 파일 처리 모듈입니다. ( read, write )
 
 ////////////////////////////////////////////////// user(라벨러) API //////////////////////////////////////////////////
 
-app.get('/api/AddUser', async function (req, res) {
+app.post('/api/AddUser', async function (req, res) {
     /*
     호출 함수 네임 : AddUser
     매개변수 : username
@@ -44,7 +44,7 @@ app.get('/api/AddUser', async function (req, res) {
 
         const result = await contract.submitTransaction('AddUser', req.body.username);
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
-        res.status(200).json({response: result.toString()});
+        res.status(200).json({response: "Ok"});
 
         await gateway.disconnect();
 
@@ -88,7 +88,7 @@ app.post('/api/AddScore', async function (req, res) {
 
         const result = await contract.submitTransaction('AddScore', req.body.username, req.body.project_name, req.body.activity_score);
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
-        res.status(200).json({response: result.toString()});
+        res.status(200).json({response: "Ok"});
 
         await gateway.disconnect();
 
@@ -106,7 +106,6 @@ app.post('/api/ReadScore', async function (req, res) {
 
     // 만약 코드에서 에러가 난 경우 예외 처리
     try {
-        const username = req.body.id
         const ccpPath = path.resolve(__dirname, '..', '..', 'network', 'organizations', 'ccp', 'connection-org2.json');
         const ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
             
@@ -127,7 +126,7 @@ app.post('/api/ReadScore', async function (req, res) {
         const network = await gateway.getNetwork('mychannel');
         const contract = network.getContract('erc20');
 
-        const result = await contract.evaluateTransaction('ReadScore', req.body.to, req.body._value);
+        const result = await contract.evaluateTransaction('ReadScore', req.body.username);
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
         res.status(200).json({response: result.toString()});
 
@@ -139,5 +138,5 @@ app.post('/api/ReadScore', async function (req, res) {
     }
 });
 
-app.listen(8090, '0.0.0.0');
+app.listen(8000, '0.0.0.0');
 console.log('Running on api server');
