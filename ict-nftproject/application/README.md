@@ -85,7 +85,7 @@ http://IP:Port/api/function
  + __response__
  ```json
   {
-    "response": "Ok"
+    "response": {"tokenId":"101","owner":"x509::CN=minter,OU=client::CN=fabric-ca-server,OU=Fabric,O=Hyperledger,ST=North Carolina,C=US","tokenURI":"https://example.com/nft101.json","approved":""}
   }
  ```
  
